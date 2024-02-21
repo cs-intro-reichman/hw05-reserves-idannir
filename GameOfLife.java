@@ -156,8 +156,9 @@ public class GameOfLife {
 				{
 					System.out.println();
 				}
+				System.out.print(" ");
 			}
-			System.out.print(" ");
+			
 		}
 	}
 		
