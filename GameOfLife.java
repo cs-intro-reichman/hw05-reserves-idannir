@@ -12,8 +12,8 @@ public class GameOfLife {
 		//// Uncomment the test that you want to execute, and re-compile.
 		//// (Run one test at a time).
 		//// test1(fileName);
-		 ////test2(fileName);
-		 ////test3(fileName, 3);
+		////test2(fileName);
+		////test3 (fileName, 3);
 		 play(fileName);
 	}
 	
@@ -27,8 +27,14 @@ public class GameOfLife {
 	// the count and cellValue functions.
 	private static void test2(String fileName) {
 		int[][] board = read(fileName);
-		//// Write here code that tests that the count and cellValue functions
-		//// are working properly, and returning the correct values.
+		String newStr = "";
+		for(int i = 0; i < board.length; i++) {
+			for(int j = 0 ; j < board[0].length; j++) {
+				if(board[i][j] == 1)
+				newStr += " Board[" + i + "][" + j + "] = " +cellValue(board, i, j);
+			}
+		}
+		System.out.println(newStr + " ");
 	}
 		
 	// Reads the data file, plays the game for Ngen generations, 
@@ -91,14 +97,15 @@ public class GameOfLife {
 	// Uses the cellValue(board,i,j) function to compute the value of each 
 	// cell in the new board. Returns the new board.
 	public static int[][] evolve(int[][] board) {
-		int[][] newboard = new int[board.length][board[0].length];
-		for (int i = 1; i < board.length - 1; i++)
+		int rows = board.length;
+		int cols = board[0].length;
+		int[][] newboard = new int[rows][cols];
+		for (int i = 1; i < rows - 1; i++)
 		{
-			for (int j = 1; j < board[0].length - 1; i++)
+			for (int j = 1; j < cols - 1; j++)
 			{
-				newboard [i] [j] = cellValue(board,i,j);
+				newboard [i][j] = cellValue(board,i,j);
 			}
-		
 		}
 		return newboard;
 	}
@@ -113,7 +120,6 @@ public class GameOfLife {
 	// Assumes that j is at least 1 and at most the number of columns in the board - 1. 
 	// Uses the count(board,i,j) function to count the number of alive neighbors.
 	public static int cellValue(int[][] board, int i, int j) {
-		int value = 0;
 		if (board[i] [j] == 1 )
 		{
 			switch (count(board, i, j)) 
